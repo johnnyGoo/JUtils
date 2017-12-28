@@ -1,5 +1,4 @@
-
-###Usage
+### Usage
 ```
 npm install johnny-utils --save
 ```
