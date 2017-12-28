@@ -1,13 +1,13 @@
 /**
  * 微信分享
  */
-let JUtils={};
-JUtils.Data={};
-JUtils.Cookie={};
-JUtils.String={};
-JUtils.Css={};
-JUtils.Time={};
-JUtils.Math={};
+let JohnnyUtils={};
+JohnnyUtils.Data={};
+JohnnyUtils.Cookie={};
+JohnnyUtils.String={};
+JohnnyUtils.Css={};
+JohnnyUtils.Time={};
+JohnnyUtils.Math={};
 
 /** 绑定事件到dom元素，返回解除绑定的函数
  * @param dom:Element
@@ -17,7 +17,7 @@ JUtils.Math={};
  * @return:Function 解除绑定的函数
  */
 
-JUtils.bindEvent = function (dom, event, callback, useCapture) {
+JohnnyUtils.bindEvent = function (dom, event, callback, useCapture) {
     function remove() {
         dom.removeEventListener(event, icc, useCapture)
     }
@@ -34,7 +34,7 @@ JUtils.bindEvent = function (dom, event, callback, useCapture) {
  * @src:String js地址
  * @callback:Function js加载成功后的回调函数
  * */
-JUtils.getScript = function (src, callback) {
+JohnnyUtils.getScript = function (src, callback) {
     let head = document.getElementsByTagName("head")[0] || document.documentElement;
     let script = document.createElement("script");
     script.async = "true";
@@ -58,7 +58,7 @@ JUtils.getScript = function (src, callback) {
  * @src:String css地址
  * @callback:Function css加载成功后的回调函数
  * */
-JUtils.getCss = function (src, callback) {
+JohnnyUtils.getCss = function (src, callback) {
     let head = document.getElementsByTagName("head")[0] || document.documentElement;
     let script = document.createElement("link");
     script.async = "true";
@@ -81,25 +81,25 @@ JUtils.getCss = function (src, callback) {
     head.insertBefore(script, head.firstChild);
 };
 //是否数组
-JUtils.Data.isObject = function (arg) {
+JohnnyUtils.Data.isObject = function (arg) {
     return Object.prototype.toString.call(arg) === '[object Object]';
 };
 
 //是否数组
-JUtils.Data.isNumber = function (arg) {
+JohnnyUtils.Data.isNumber = function (arg) {
     return Object.prototype.toString.call(arg) === '[object Number]';
 };
 
 //是否数组
-JUtils.Data.isArray = function (arg) {
+JohnnyUtils.Data.isArray = function (arg) {
     return Object.prototype.toString.call(arg) === '[object Array]';
 };
 //是否字符串
-JUtils.Data.isString = function (arg) {
+JohnnyUtils.Data.isString = function (arg) {
     return Object.prototype.toString.call(arg) === '[object String]';
 };
 //获取Cookie
-JUtils.Cookie.get=function (name) {
+JohnnyUtils.Cookie.get=function (name) {
     let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
     if (arr = document.cookie.match(reg))
         return decodeURI(arr[2]);
@@ -107,14 +107,14 @@ JUtils.Cookie.get=function (name) {
         return null;
 };
 //获取Cookie
-JUtils.Cookie.set=function(name, value, time) {
-    let strsec = JUtils.Time.sec(time);
+JohnnyUtils.Cookie.set=function(name, value, time) {
+    let strsec = JohnnyUtils.Time.sec(time);
     let exp = new Date();
     exp.setTime(exp.getTime() + strsec * 1);
     document.cookie = name + "=" + encodeURI(value) + ";expires=" + exp.toGMTString();
 };
 //删除Cookie
-JUtils.Cookie.del=function (name) {
+JohnnyUtils.Cookie.del=function (name) {
     let exp = new Date();
     exp.setTime(exp.getTime() - 1);
     let cval = getCookie(name);
@@ -124,7 +124,7 @@ JUtils.Cookie.del=function (name) {
 
 };
 //字符串转换毫秒
-JUtils.Time.sec=function(str) {
+JohnnyUtils.Time.sec=function(str) {
     let str1 = str.substring(0, str.length - 1) * 1;
     let str2 = str.substring(str.length - 1,str.length );
     switch (str2){
@@ -146,14 +146,14 @@ JUtils.Time.sec=function(str) {
 };
 
 //字符串替换
-JUtils.String.replace = function (str, match, replace_str) {
+JohnnyUtils.String.replace = function (str, match, replace_str) {
     return str.replace(new RegExp(match, 'gm'), replace_str);
 };
 
-JUtils.Math.degreeRadian=function (degree) {
+JohnnyUtils.Math.degreeRadian=function (degree) {
     return degree/ 180 * Math.PI;
 };
-JUtils.Math.radianDegree=function (radian) {
+JohnnyUtils.Math.radianDegree=function (radian) {
     return radian/Math.PI*180 ;
 };
 
@@ -161,13 +161,13 @@ JUtils.Math.radianDegree=function (radian) {
 //矩形函数
 
 
-JUtils.Rect=function(x, y, width, height) {
+JohnnyUtils.Rect=function(x, y, width, height) {
     this.x = x||0;
     this.y = y||0;
     this.width = width||0;
     this.height = height||0;
 };
-JUtils.Rect.prototype.fixInRec = function ( recBig) {
+JohnnyUtils.Rect.prototype.fixInRec = function ( recBig) {
     let rec=this;
     let obj = {width: 0, height: 0};
     let rad = rec.width / rec.height;
@@ -184,7 +184,7 @@ JUtils.Rect.prototype.fixInRec = function ( recBig) {
     obj.scale = obj.width / rec.width;
     return obj;
 };
-JUtils.Rect.prototype.fillInRec = function (recBig) {
+JohnnyUtils.Rect.prototype.fillInRec = function (recBig) {
     let rec=this;
     let obj = {width: 0, height: 0};
     let rad = rec.width / rec.height;
@@ -204,12 +204,12 @@ JUtils.Rect.prototype.fillInRec = function (recBig) {
 
 
 // eval
-JUtils.eval = function (v) {
+JohnnyUtils.eval = function (v) {
     let eval_str = ('(' + v + ')');
     return new Function('return ' + eval_str)();
 };
 //简易模版引擎
-JUtils.nano = function (template, data) {
+JohnnyUtils.nano = function (template, data) {
     return template.replace(/\{([\w\.]*)\}/g, function (str, key) {
         let keys = key.split("."), v = data[keys.shift()];
         for (let i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
@@ -219,7 +219,7 @@ JUtils.nano = function (template, data) {
 /*
  * 为css加入浏览器前缀
  * */
-JUtils.Css.fixCss=function(name, attr) {
+JohnnyUtils.Css.fixCss=function(name, attr) {
     let cssObj = {};
     if (!attr || attr === '') {
         return cssObj;
@@ -231,7 +231,7 @@ JUtils.Css.fixCss=function(name, attr) {
     cssObj['-o-' + name] = attr;
     return cssObj;
 };
-JUtils.Css.css = function (el, obj) {
+JohnnyUtils.Css.css = function (el, obj) {
     if (el&&obj) {
         for (let i in obj) {
             if (el.style) {
@@ -242,5 +242,5 @@ JUtils.Css.css = function (el, obj) {
 };
 
 
-window.JUtils=  JUtils;
-module.exports = window.JUtils;
+window.JohnnyUtils=  JohnnyUtils;
+module.exports = window.JohnnyUtils;
