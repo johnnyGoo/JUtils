@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>介绍 — Vue.js</title>
+    <title>johnny-utils</title>
     <meta charset="utf-8">
     <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,5 +13,9 @@
 </body>
 <script>
    console.log(JohnnyUtils.Time.sec('100m'));
+   JohnnyUtils.jsonp('http://h5.2smart.cn/wechat/js/',{url:'http://h5.2smart.cn/'},function (data) {
+       console.log(data);
+
+   })
 </script>
 </html>
