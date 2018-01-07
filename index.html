@@ -13,9 +13,10 @@
 </body>
 <script>
    console.log(JohnnyUtils.Time.sec('100m'));
+
+   console.log(JohnnyUtils.extend({a:1,b:5,c:9},{b:2,w:1010},{c:5,e:10}));
    JohnnyUtils.jsonp('http://h5.2smart.cn/wechat/js/',{url:'http://h5.2smart.cn/'},function (data) {
        console.log(data);
-
    })
 </script>
 </html>

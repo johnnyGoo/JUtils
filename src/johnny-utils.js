@@ -12,6 +12,19 @@ JohnnyUtils.Time = {};
 JohnnyUtils.Math = {};
 
 
+JohnnyUtils.extend = function (obj) {
+    let length = arguments.length;
+    obj = Object(obj);
+    if (length < 2 || obj == null) return obj;
+    for (let index = 1; index < length; index++) {
+        let source = arguments[index]
+        for (let key in source) {
+            obj[key] = source[key];
+        }
+    }
+    return obj
+}
+
 /** 绑定事件到dom元素，返回解除绑定的函数
  * @param dom:Element
  * @param event:String
@@ -273,8 +286,12 @@ JohnnyUtils.Css.css = function (el, obj) {
     }
 };
 
-JohnnyUtils.jsonp = function (url, params, callback, error,timeout) {
-    jsonp(url, {param: JohnnyUtils.Data.objectToString(params) + '&callback',timeout:timeout||60000,prefix:'__jsonp_'}, (err, data) => {
+JohnnyUtils.jsonp = function (url, params, callback, error, timeout) {
+    jsonp(url, {
+        param: JohnnyUtils.Data.objectToString(params) + '&callback',
+        timeout: timeout || 60000,
+        prefix: '__jsonp_'
+    }, (err, data) => {
         if (err && error) {
             error(err)
         } else {
@@ -282,5 +299,5 @@ JohnnyUtils.jsonp = function (url, params, callback, error,timeout) {
         }
     })
 };
-window.JohnnyUtils = JohnnyUtils;
+
 export default JohnnyUtils

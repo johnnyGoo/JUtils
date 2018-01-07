@@ -9,6 +9,7 @@ import JohnnyUtils from 'johnny-utils'
 
 ### methods:
 ```
+JohnnyUtils.extend()
 JohnnyUtils.bindEvent()
 JohnnyUtils.getScript()
 JohnnyUtils.getCss()
