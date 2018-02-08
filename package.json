@@ -2,7 +2,7 @@
   "name": "johnny-utils",
   "description": "JohnnyUtils a utils library for js",
   "author": "johnnyGoo <157781745@qq.com>",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/johnny-utils.min.js",
   "homepage": "https://github.com/johnnyGoo/jutils",
   "repository": {
@@ -13,7 +13,9 @@
     "dev": "webpack-dev-server --inline --hot --host 192.168.1.105 --port 8001",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "dependencies": {},
+  "dependencies": {
+    "blueimp-md5": "^2.10.0"
+  },
   "devDependencies": {
     "jsonp": "^0.2.1",
     "babel-core": "^6.0.0",

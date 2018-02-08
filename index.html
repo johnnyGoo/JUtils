@@ -12,11 +12,13 @@
 
 </body>
 <script>
-   console.log(JohnnyUtils.Time.sec('100m'));
+    var Utils = SMART.Utils
+    console.log(Utils.Time.sec('100m'));
 
-   console.log(JohnnyUtils.extend({a:1,b:5,c:9},{b:2,w:1010},{c:5,e:10}));
-   JohnnyUtils.jsonp('http://h5.2smart.cn/wechat/js/',{url:'http://h5.2smart.cn/'},function (data) {
-       console.log(data);
-   })
+    console.log(Utils.extend({a: 1, b: 5, c: 9}, {b: 2, w: 1010}, {c: 5, e: 10}));
+    Utils.jsonp('http://h5.2smart.cn/wechat/js/', {url: 'http://h5.2smart.cn/'}, function (data) {
+        console.log(data);
+    })
+    console.log(Utils.md5('1'))
 </script>
 </html>

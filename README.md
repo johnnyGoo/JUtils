@@ -1,4 +1,7 @@
 ### Usage
+
+window.SMART.Utils
+
 ```
 npm install johnny-utils --save
 ```

@@ -2,6 +2,7 @@
  * 微信分享
  */
 import jsonp from 'jsonp'
+import md5 from "blueimp-md5"
 
 let JohnnyUtils = {};
 JohnnyUtils.Data = {};
@@ -187,8 +188,17 @@ JohnnyUtils.Time.sec = function (str) {
             break;
 
     }
-
 };
+//返回当前时间戳 ms 是否是毫秒
+JohnnyUtils.Time.now = function (ms) {
+    let now = new Date().getTime();
+    if (true===ms) {
+        return now;
+    } else {
+        return Math.round(now / 1000)
+    }
+}
+
 
 //字符串替换
 JohnnyUtils.String.replace = function (str, match, replace_str) {
@@ -286,11 +296,16 @@ JohnnyUtils.Css.css = function (el, obj) {
     }
 };
 
+//jsonp
+
 JohnnyUtils.jsonp = function (url, params, callback, error, timeout) {
+
+    let prams = JohnnyUtils.Data.objectToString(params);
+    let fun=url +'?'+ prams +'&t='+JohnnyUtils.Time.now(true);
     jsonp(url, {
-        param: JohnnyUtils.Data.objectToString(params) + '&callback',
+        param: prams + '&callback',
         timeout: timeout || 60000,
-        prefix: '__jsonp_'
+        prefix: '__jsonp_' + md5(fun)
     }, (err, data) => {
         if (err && error) {
             error(err)
@@ -299,5 +314,7 @@ JohnnyUtils.jsonp = function (url, params, callback, error, timeout) {
         }
     })
 };
+//md5
+JohnnyUtils.md5 = md5;
 
 export default JohnnyUtils
